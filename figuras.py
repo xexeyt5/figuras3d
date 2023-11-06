@@ -34,6 +34,19 @@ cuadrado3d = Poly3DCollection(caras, edgecolor='b', linewidths=1, alpha=0.5)
 # Agregar la colección al gráfico
 ax.add_collection3d(cuadrado3d)
 
+
+# Coordenadas de la esfera con radio 0.5
+u = np.linspace(0, 2 * np.pi, 100)
+v = np.linspace(0, np.pi, 100)
+radius = 0.5
+x = radius * np.outer(np.cos(u), np.sin(v))
+y = radius * np.outer(np.sin(u), np.sin(v))
+z = radius * np.outer(np.ones(np.size(u)), np.cos(v))
+
+# Trazar la superficie de la esfera
+ax.plot_surface(x, y, z, color='b')
+
+
 # Etiquetas de ejes
 ax.set_xlabel('Eje X')
 ax.set_ylabel('Eje Y')
