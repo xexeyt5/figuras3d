@@ -44,7 +44,15 @@ y = radius * np.outer(np.sin(u), np.sin(v))
 z = radius * np.outer(np.ones(np.size(u)), np.cos(v))
 
 # Trazar la superficie de la esfera
-ax.plot_surface(x, y, z, color='b')
+ax.plot_surface(x, y, z, color='r')
+
+# Coordenadas de los vértices del triángulo en 3D
+x = [0, 1, 0]
+y = [0, 0, 1]
+z = [0, 0, 0]
+
+# Conectar los vértices para formar el triángulo
+ax.plot(x + [x[0]], y + [y[0]], z + [z[0]], color='g')
 
 
 # Etiquetas de ejes
