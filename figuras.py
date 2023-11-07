@@ -95,6 +95,39 @@ rectangulo3d = Poly3DCollection(caras, edgecolor='b', linewidths=1, alpha=0.5)
 # Agregar la colección al gráfico
 ax.add_collection3d(rectangulo3d)
 
+# Coordenadas de la dona (toro) más pequeña y en diferentes coordenadas
+u = np.linspace(0, 2 * np.pi, 100)
+v = np.linspace(0, 2 * np.pi, 100)
+R = 0.5  # Reduz el radio mayor de la dona
+r = 0.1  # Reduz el radio menor de la dona
+x = 2  # Cambia la coordenada x
+y = 2  # Cambia la coordenada y
+z = 1  # Cambia la coordenada z
+u, v = np.meshgrid(u, v)
+x = x + (R + r * np.cos(v)) * np.cos(u)
+y = y + (R + r * np.cos(v)) * np.sin(u)
+z = z + r * np.sin(v)
+
+# Trazar la superficie de la dona
+ax.plot_surface(x, y, z, color='r')
+
+
+# Coordenadas del cono pequeño
+radius = 0.3  # Radio del cono
+height = 0.5  # Altura del cono
+n_points = 50  # Número de puntos en la base del cono
+
+# Generar las coordenadas del cono
+theta = np.linspace(0, 2 * np.pi, n_points)
+z = np.linspace(0, height, n_points)
+Z, Theta = np.meshgrid(z, theta)
+R = radius * (1 - Z / height)  # Radio variable a lo largo de la altura
+
+X = R * np.cos(Theta)
+Y = R * np.sin(Theta)
+
+# Trama la superficie del cono
+ax.plot_surface(X, Y, Z, color='g')
 
 
 # Etiquetas de ejes
